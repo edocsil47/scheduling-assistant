@@ -123,24 +123,23 @@ Assist with math involving milliseconds
 
 ```js
 const { ScheduledFunction, Intervals, Offsets, Units } = require("./SchedulingAssistant.js")
+```
 
-// create and start a scheduled function that will run foo weekly on Mondays at 17:00 UTC
+Create and start a scheduled function that will run foo weekly on Mondays at 17:00 UTC  
+```js
 const someScheduledFunction = new ScheduledFunction(
   foo,
   Intervals.Weekly,
   Offsets.Monday + Units.Hour*17
 ).start()
+```
 
-
-// scheduled functions can be created and ran later
+Scheduled functions can also be created and ran later  
+```js
 const conditionalScheduledFunction = new ScheduledFunction(
   foo,
   Intervals.Secondly*10,
   0
 )
 if (someBoolean) conditionalScheduledFunction.start()
-
-
-// cancel the scheduled function later with .halt()
-if (someBoolean) someScheduledFunction.halt()
 ```
