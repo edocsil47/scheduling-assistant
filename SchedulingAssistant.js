@@ -5,9 +5,31 @@ class ScheduledFunction {
 	#halted
 	
 	constructor(foo, interval, offset, ...args) {
-		this.#foo = foo
-		this.interval = interval
-		this.offset = offset
+		if (typeof foo !== "function") {
+			throw new TypeError("foo is not a function")
+		} else {
+			this.#foo = foo
+		}
+		
+		if (typeof interval !== "number") {
+			throw new TypeError("interval is not a number")
+		} else if (interval <= 0) {
+			throw new RangeError("interval must be greater than 0")
+		} else {
+			if (interval < 1000) {
+				console.warn("Warning! Short intervals may result in missed ticks!")
+			}
+			this.interval = interval
+		}
+		
+		if (offset === null) {
+			this.offset = 0
+		} else if (typeof offset !== "number") {
+			throw new TypeError("offset is not a number")
+		} else {
+			this.offset = offset
+		}
+		
 		this.#args = args
 	}
 	
@@ -46,6 +68,14 @@ class ScheduledFunction {
 	}
 }
 
+const Units = {
+	Second: 1000,
+	Minute: 60*1000,
+	Hour: 60*60*1000,
+	Day: 24*60*60*1000,
+	Week: 7*24*60*60*1000,
+}
+
 const Intervals = {
 	Secondly: Units.Second,
 	Minutely: Units.Minute,
@@ -63,14 +93,6 @@ const Offsets = {
 	Friday: Units.Day,
 	Saturday: Units.Day*2,
 	Noon: Units.Hour*12,
-}
-
-const Units = {
-	Second: 1000,
-	Minute: 60*1000,
-	Hour: 60*60*1000,
-	Day: 24*60*60*1000,
-	Week: 7*24*60*60*1000,
 }
 
 exports.ScheduledFunction = ScheduledFunction
