@@ -13,7 +13,7 @@ Data structure to help create and manage interval functions.
 ### Constructor
 
 ```js
-new SchedulingAssistant.ScheduledFunction(foo, interval, offset[, arg1, arg2, ...])
+new SchedulingAssistant.ScheduledFunction(foo, interval[, offset, arg1, arg2, ...])
 ```
 
 #### foo
@@ -26,12 +26,12 @@ Type: `Function`
 The length of the schedule interval in milliseconds  
 Type: `Number`  
 
-#### offset
+#### offset (optional)
 
 The offset of the schedule interval relative to the Epoch in milliseconds  
 Type: `Number`  
 
-#### args
+#### args (optional)
 
 Arguments to pass to foo  
 Type: `Any`  
