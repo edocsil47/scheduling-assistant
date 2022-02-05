@@ -48,9 +48,9 @@ Type: `Number`
 The offset of the schedule interval relative to the Epoch in milliseconds  
 Type: `Number`  
 
-#### .started
+#### .running
 
-Whether the scheduled function has been started  
+Whether the scheduled function was started and has not been halted  
 Type: `?Boolean`  
 
 ### Methods
@@ -77,7 +77,7 @@ Returns: `ScheduledFunction`
 
 #### .start()
 
-Starts the schedule  
+Starts the schedule. Can be used to restart a scheduled function after a .halt()  
 Returns: `ScheduledFunction`  
 
 ## SchedulingAssistant.Units
